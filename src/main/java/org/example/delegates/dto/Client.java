@@ -2,11 +2,13 @@ package org.example.delegates.dto;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+import java.io.Serializable;
+
+@Data
 @AllArgsConstructor
-public class Client {
+public class Client implements Serializable {
 
     private int age;
     private int income;

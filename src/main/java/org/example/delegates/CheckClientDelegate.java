@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class CheckClientDelegate implements JavaDelegate {
 
+    private final String VARIABLE_APPROVE_CREDIT = "approveCredit";
+
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
         Client client = (Client) delegateExecution.getVariable("client");
@@ -19,7 +21,13 @@ public class CheckClientDelegate implements JavaDelegate {
                         client.isHasCreditStory(),
                         client.getYears()
                 );
-        delegateExecution.setVariable("approveCredit",approveCredit);
+        String result = approveCredit ? "TRUE" : "FALSE";
+
+        System.out.printf("Кредит %s одобрен\n%s\n----------\n",
+                (approveCredit ? "" : "не " ),
+                client);
+        delegateExecution.setVariable(VARIABLE_APPROVE_CREDIT,result);
+
     }
 
     private boolean checkAge(int clientAge){

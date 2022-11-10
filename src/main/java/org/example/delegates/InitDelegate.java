@@ -10,8 +10,8 @@ import java.util.Random;
 
 @Component
 public class InitDelegate implements JavaDelegate {
-
-    Random rnd = new Random();
+    private final String VARIABLE_CLIENT = "client";
+    private final Random rnd = new Random();
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
@@ -22,7 +22,7 @@ public class InitDelegate implements JavaDelegate {
                 rnd.nextInt(0,5)
         );
 
-        delegateExecution.setVariable("client", randomClient);
+        delegateExecution.setVariable(VARIABLE_CLIENT, randomClient);
 
     }
 }
