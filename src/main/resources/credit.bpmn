@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="_DdZocL47EeOQo_IRkjDF6w" targetNamespace="http://camunda.org/schema/1.0/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.3" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
-  <bpmn2:process id="test" name="test" isExecutable="true">
+  <bpmn2:process id="credit" name="credit" isExecutable="true">
     <bpmn2:startEvent id="StartEvent_1" name="Приём заявки на кредит">
       <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
     </bpmn2:startEvent>
@@ -23,7 +23,7 @@
       <bpmn2:incoming>Flow_10x6539</bpmn2:incoming>
     </bpmn2:endEvent>
     <bpmn2:sequenceFlow id="Flow_10x6539" sourceRef="Gateway_0kvm2kd" targetRef="Event_031a94t" />
-    <bpmn2:task id="Activity_1uflu5s" name="Выбор условий проедложенных условий заявителем">
+    <bpmn2:task id="Activity_1uflu5s" name="Выбор условий предложенных условий заявителем">
       <bpmn2:incoming>Flow_0k7q4xy</bpmn2:incoming>
       <bpmn2:outgoing>Flow_1b4quti</bpmn2:outgoing>
     </bpmn2:task>
@@ -40,7 +40,7 @@
     </bpmn2:serviceTask>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="test">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="credit">
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="_BPMNShape_StartEvent_3" targetElement="Activity_0hdxfhn_di">
         <di:waypoint x="218" y="122" />
         <di:waypoint x="290" y="122" />
