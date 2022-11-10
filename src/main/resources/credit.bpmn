@@ -20,10 +20,6 @@
       <bpmn2:outgoing>Flow_10x6539</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:sequenceFlow id="Flow_0b1gi35" sourceRef="Activity_0ibovij" targetRef="Gateway_0kvm2kd" />
-    <bpmn2:task id="Activity_1uflu5s" name="Выбор условий предложенных условий заявителем">
-      <bpmn2:incoming>Flow_0k7q4xy</bpmn2:incoming>
-      <bpmn2:outgoing>Flow_1b4quti</bpmn2:outgoing>
-    </bpmn2:task>
     <bpmn2:sequenceFlow id="Flow_0k7q4xy" sourceRef="Gateway_0kvm2kd" targetRef="Activity_1uflu5s">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${approveCredit=='TRUE'}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
@@ -47,6 +43,10 @@
     <bpmn2:endEvent id="Event_031a94t" name="Отказ">
       <bpmn2:incoming>Flow_10x6539</bpmn2:incoming>
     </bpmn2:endEvent>
+    <bpmn2:serviceTask id="Activity_1uflu5s" name="Выбор заявителем предложенных ему условий" camunda:asyncAfter="true" camunda:delegateExpression="${chooseCreditDelegate}">
+      <bpmn2:incoming>Flow_0k7q4xy</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1b4quti</bpmn2:outgoing>
+    </bpmn2:serviceTask>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="credit">
@@ -103,9 +103,6 @@
       <bpmndi:BPMNShape id="Gateway_0kvm2kd_di" bpmnElement="Gateway_0kvm2kd" isMarkerVisible="true">
         <dc:Bounds x="625" y="237" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1uflu5s_di" bpmnElement="Activity_1uflu5s">
-        <dc:Bounds x="760" y="222" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1f0atdp_di" bpmnElement="Activity_1f0atdp">
         <dc:Bounds x="950" y="222" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -123,6 +120,9 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="630" y="395" width="41" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1v2pif8_di" bpmnElement="Activity_1uflu5s">
+        <dc:Bounds x="760" y="222" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

@@ -15,7 +15,7 @@ public class CheckClientDelegate implements JavaDelegate {
         Client client = (Client) delegateExecution.getVariable("client");
         boolean approveCredit =
                 checkAge(client.getAge()) &
-                checkIncome(client.getIncome()) &
+                checkIncome(client.getIncome(), client.getWantedMoney()) &
                 checkHistory(
                         client.getAge(),
                         client.isHasCreditStory(),
@@ -34,8 +34,8 @@ public class CheckClientDelegate implements JavaDelegate {
         return clientAge > 17;
     }
 
-    private boolean checkIncome(int clientIncome){
-        return clientIncome > 30000;
+    private boolean checkIncome(int clientIncome, int clientWantedMoney){
+        return (clientWantedMoney / 10) < clientIncome;
     }
 
     private boolean checkHistory(int clientAge, boolean clientHistory, int years){

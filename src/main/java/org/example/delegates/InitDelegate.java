@@ -19,7 +19,8 @@ public class InitDelegate implements JavaDelegate {
                 rnd.nextInt(14,80),
                 rnd.nextInt(5000,100000),
                 rnd.nextBoolean(),
-                rnd.nextInt(0,5)
+                rnd.nextInt(0,5),
+                rnd.nextInt(50000,1000000)
         );
 
         delegateExecution.setVariable(VARIABLE_CLIENT, randomClient);

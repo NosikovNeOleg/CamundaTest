@@ -14,5 +14,6 @@ public class Client implements Serializable {
     private int income;
     private boolean hasCreditStory;
     private int years;
+    private int wantedMoney;
 
 }
