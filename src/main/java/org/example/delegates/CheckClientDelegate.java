@@ -3,12 +3,14 @@ package org.example.delegates;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.example.delegates.dto.Client;
+import org.example.service.SimpleLogService;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CheckClientDelegate implements JavaDelegate {
 
     private final String VARIABLE_APPROVE_CREDIT = "approveCredit";
+
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
@@ -21,12 +23,13 @@ public class CheckClientDelegate implements JavaDelegate {
                         client.isHasCreditStory(),
                         client.getYears()
                 );
-        String result = approveCredit ? "TRUE" : "FALSE";
-
-        System.out.printf("Кредит %s одобрен\n%s\n----------\n",
-                (approveCredit ? "" : "не " ),
-                client);
-        delegateExecution.setVariable(VARIABLE_APPROVE_CREDIT,result);
+        String message = String.format("Кредит%s одобрен", (approveCredit ? "" : " не" ));
+        if (approveCredit) {
+            SimpleLogService.logInfo(message);
+        } else {
+            SimpleLogService.logWarn(message);
+        }
+        delegateExecution.setVariable(VARIABLE_APPROVE_CREDIT, approveCredit ? "TRUE" : "FALSE");
 
     }
 

@@ -5,6 +5,7 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.example.delegates.dto.Client;
 import org.example.delegates.dto.CreditCondition;
+import org.example.service.SimpleLogService;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -35,6 +36,9 @@ public class ChooseCreditDelegate implements JavaDelegate {
         }
 
         delegateExecution.setVariable(VARIABLE_CLIENT_CHOICE, listWithCredits.get(new Random().nextInt(listWithCredits.size())));
-        System.out.println("Клиент выбрал кредит:\n" + delegateExecution.getVariable(VARIABLE_CLIENT_CHOICE) + "\n----------");
+        SimpleLogService.logInfo(
+                String.format("Клиент выбрал кредит:\n%s", delegateExecution.getVariable(VARIABLE_CLIENT_CHOICE))
+        );
+
     }
 }

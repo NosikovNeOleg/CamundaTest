@@ -10,6 +10,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Client implements Serializable {
 
+    private int passport;
+
     private int age;
     private int income;
     private boolean hasCreditStory;
