@@ -3,8 +3,10 @@ package org.example.delegates;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.example.Variables;
 import org.example.delegates.dto.Client;
 import org.example.delegates.dto.CreditCondition;
+import org.example.service.ClientChooseService;
 import org.example.service.SimpleLogService;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +15,8 @@ import java.util.List;
 import java.util.Random;
 
 @Component
-public class ChooseCreditDelegate implements JavaDelegate {
+public class MakeCreditVariationsDelegate implements JavaDelegate {
 
-    private final String VARIABLE_CLIENT_CHOICE = "clientChoice";
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
@@ -35,10 +36,12 @@ public class ChooseCreditDelegate implements JavaDelegate {
             listWithCredits.add(new CreditCondition(creditMoney, creditYears));
         }
 
-        delegateExecution.setVariable(VARIABLE_CLIENT_CHOICE, listWithCredits.get(new Random().nextInt(listWithCredits.size())));
-        SimpleLogService.logInfo(
-                String.format("Клиент выбрал кредит:\n%s", delegateExecution.getVariable(VARIABLE_CLIENT_CHOICE))
-        );
+        delegateExecution.setVariable(Variables.CREDIT_VARIATIONS.getVariable(), listWithCredits);
 
+        delegateExecution.getProcessEngineServices().getRuntimeService()
+                .createMessageCorrelation("clientChoice")
+                .setVariable(Variables.CLIENT.getVariable(), client)
+                .setVariable(Variables.CREDIT_VARIATIONS.getVariable(), listWithCredits)
+                .correlate();
     }
 }

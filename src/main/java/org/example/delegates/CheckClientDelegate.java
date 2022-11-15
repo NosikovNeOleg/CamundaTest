@@ -2,6 +2,7 @@ package org.example.delegates;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.example.Variables;
 import org.example.delegates.dto.Client;
 import org.example.service.SimpleLogService;
 import org.springframework.stereotype.Component;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CheckClientDelegate implements JavaDelegate {
 
-    private final String VARIABLE_APPROVE_CREDIT = "approveCredit";
 
 
     @Override
@@ -29,7 +29,7 @@ public class CheckClientDelegate implements JavaDelegate {
         } else {
             SimpleLogService.logWarn(message);
         }
-        delegateExecution.setVariable(VARIABLE_APPROVE_CREDIT, approveCredit ? "TRUE" : "FALSE");
+        delegateExecution.setVariable(Variables.APPROVE_CREDIT.getVariable(), approveCredit ? "TRUE" : "FALSE");
 
     }
 

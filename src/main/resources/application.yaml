@@ -1,7 +1,11 @@
-camunda.bpm:
-  admin-user:
-    id: demo
-    password: demo
-    firstName: Demo
-  filter:
-    create: All tasks
+camunda:
+  bpm:
+    authorization:
+      enabled-for-custom-code: false
+      enabled: false
+    admin-user:
+      id: demo
+      password: demo
+      firstName: Demo
+    filter:
+      create: All tasks

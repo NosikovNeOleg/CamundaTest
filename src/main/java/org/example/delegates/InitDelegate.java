@@ -3,6 +3,7 @@ package org.example.delegates;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.example.Variables;
 import org.example.delegates.dto.Client;
 import org.example.service.SimpleLogService;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,6 @@ import java.util.Random;
 
 @Component
 public class InitDelegate implements JavaDelegate {
-    private final String VARIABLE_CLIENT = "client";
     private final Random rnd = new Random();
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
@@ -25,7 +25,7 @@ public class InitDelegate implements JavaDelegate {
                 rnd.nextInt(50000,1000000)
         );
 
-        delegateExecution.setVariable(VARIABLE_CLIENT, randomClient);
+        delegateExecution.setVariable(Variables.CLIENT.getVariable(), randomClient);
         SimpleLogService.logInfo(
                 String.format("Поступила завяка от клиента %s на кредит",
                 randomClient.getPassport())

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class SendMoneyRusServiceImpl implements SendMoneyService {
 
-
     @Override
     public void sendMoney(int passport, int amount) {
         try {

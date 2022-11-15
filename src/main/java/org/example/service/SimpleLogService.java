@@ -11,6 +11,7 @@ public class SimpleLogService {
     }
 
     public static void logWarn(String str){
+
         System.err.println(str);
     }
 }
