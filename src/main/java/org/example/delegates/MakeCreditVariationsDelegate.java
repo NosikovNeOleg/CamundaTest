@@ -38,10 +38,12 @@ public class MakeCreditVariationsDelegate implements JavaDelegate {
 
         delegateExecution.setVariable(Variables.CREDIT_VARIATIONS.getVariable(), listWithCredits);
 
+        Thread.sleep(new Random().nextInt(1000,30000));
+
         delegateExecution.getProcessEngineServices().getRuntimeService()
-                .createMessageCorrelation("clientChoice")
-                .setVariable(Variables.CLIENT.getVariable(), client)
-                .setVariable(Variables.CREDIT_VARIATIONS.getVariable(), listWithCredits)
-                .correlate();
+                    .createMessageCorrelation("clientChoice")
+                    .setVariable(Variables.CLIENT.getVariable(), client)
+                    .setVariable(Variables.CREDIT_VARIATIONS.getVariable(), listWithCredits)
+                    .correlate();
     }
 }
