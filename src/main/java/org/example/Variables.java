@@ -12,6 +12,8 @@ public enum Variables {
     APPROVE_CREDIT ("approveCredit"),
     CLIENT ("client");
 
+
+
     final String variable;
 
     Variables(String variable) {
