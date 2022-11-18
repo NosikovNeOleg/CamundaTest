@@ -7,6 +7,8 @@ import org.example.delegates.dto.Client;
 import org.example.service.SimpleLogService;
 import org.springframework.stereotype.Component;
 
+import java.util.Random;
+
 @Component
 public class CheckClientDelegate implements JavaDelegate {
 
@@ -30,6 +32,10 @@ public class CheckClientDelegate implements JavaDelegate {
             SimpleLogService.logWarn(message);
         }
         delegateExecution.setVariable(Variables.APPROVE_CREDIT.getVariable(), approveCredit ? "TRUE" : "FALSE");
+
+        if (new Random().nextBoolean()){
+            delegateExecution.setVariable(Variables.APPROVE_CREDIT.getVariable(), null);
+        }
 
     }
 

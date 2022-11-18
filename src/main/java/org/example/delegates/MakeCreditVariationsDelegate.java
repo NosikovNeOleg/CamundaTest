@@ -6,13 +6,10 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.example.Variables;
 import org.example.delegates.dto.Client;
 import org.example.delegates.dto.CreditCondition;
-import org.example.service.ClientChooseService;
-import org.example.service.SimpleLogService;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @Component
 public class MakeCreditVariationsDelegate implements JavaDelegate {

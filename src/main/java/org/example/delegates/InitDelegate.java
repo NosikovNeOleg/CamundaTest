@@ -16,6 +16,8 @@ public class InitDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
+        delegateExecution.getProcessInstance().setProcessBusinessKey("1"); // сюда вставить генерацию ключей
+
         Client randomClient = new Client(
                 rnd.nextInt(100000,1000000),
                 rnd.nextInt(14,80),
@@ -30,7 +32,7 @@ public class InitDelegate implements JavaDelegate {
                 String.format("Поступила завяка от клиента %s на кредит",
                 randomClient.getPassport())
         );
-        SimpleLogService.logInfo(randomClient.toString());
+        SimpleLogService.logInfo(randomClient.toString() + "| key=" + delegateExecution.getProcessBusinessKey());
 
     }
 }
