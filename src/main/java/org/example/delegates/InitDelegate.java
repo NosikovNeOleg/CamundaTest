@@ -32,7 +32,7 @@ public class InitDelegate implements JavaDelegate {
                 String.format("Поступила завяка от клиента %s на кредит",
                 randomClient.getPassport())
         );
-        SimpleLogService.logInfo(randomClient.toString() + "| key=" + delegateExecution.getProcessBusinessKey());
+        SimpleLogService.logInfo(randomClient+ "| key=" + delegateExecution.getProcessBusinessKey());
 
     }
 }
