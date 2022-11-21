@@ -20,7 +20,8 @@ public class SendMoneyDelegate implements JavaDelegate {
     }
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
+        String bk = delegateExecution.getProcessBusinessKey();
         Client client = (Client) delegateExecution.getVariable("client");
-        sendMoneyService.sendMoney(client.getPassport() ,client.getWantedMoney());
+        sendMoneyService.sendMoney(bk,client.getPassport() ,client.getWantedMoney());
     }
 }

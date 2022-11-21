@@ -12,6 +12,7 @@ public class ForeignTask implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        SimpleLogService.logInfo("Я здесь побывал");
+        String bk = delegateExecution.getProcessBusinessKey();
+        SimpleLogService.logInfo(bk,"Внешняя задача");
     }
 }

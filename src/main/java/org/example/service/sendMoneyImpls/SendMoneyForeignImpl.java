@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class SendMoneyForeignImpl implements SendMoneyService {
 
     @Override
-    public void sendMoney(int passport, int amount) {
+    public void sendMoney(String bk, int passport, int amount) {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -17,6 +17,6 @@ public class SendMoneyForeignImpl implements SendMoneyService {
         }
 
 
-        SimpleLogService.logInfo(String.format("Клиенту %s отправлена сумма %s в иностранной валюте",passport,amount));
+        SimpleLogService.logInfo(bk, String.format("Клиенту %s отправлена сумма %s в иностранной валюте",passport,amount));
     }
 }

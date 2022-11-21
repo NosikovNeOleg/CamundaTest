@@ -16,13 +16,14 @@ public class ClientChoiceDelegate implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
+        String bk = delegateExecution.getProcessBusinessKey();
         List<CreditCondition> listWithConditions = (List<CreditCondition>) delegateExecution.getVariable(Variables.CREDIT_VARIATIONS.getVariable());
         delegateExecution.setVariable(
                 Variables.CLIENT_CHOICE.getVariable(),
                 listWithConditions.get(ClientChooseService.makeAChoice(listWithConditions.size()))
         );
 
-        SimpleLogService.logInfo(
+        SimpleLogService.logInfo(bk,
                 String.format("Клиент выбрал кредит:\n%s", delegateExecution.getVariable(Variables.CLIENT_CHOICE.getVariable()))
         );
 

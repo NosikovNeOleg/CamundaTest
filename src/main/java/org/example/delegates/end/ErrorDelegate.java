@@ -12,8 +12,9 @@ public class ErrorDelegate implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
+        String bk = delegateExecution.getProcessBusinessKey();
 
-        SimpleLogService.logWarn(delegateExecution.getVariable("client").toString() + " ошибка");
+        SimpleLogService.logWarn(bk, delegateExecution.getVariable("client").toString() + " ошибка");
 
         delegateExecution.getProcessEngineServices().getRuntimeService()
                 .createMessageCorrelation("errorReport")

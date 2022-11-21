@@ -4,5 +4,5 @@ package org.example.service;
 
 public interface SendMoneyService {
 
-    public void sendMoney(int passport, int amount);
+    public void sendMoney(String bk, int passport, int amount);
 }

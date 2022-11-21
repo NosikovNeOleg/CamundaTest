@@ -13,6 +13,7 @@ public class SuccessDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
         Client client = (Client) delegateExecution.getVariable("client");
-        SimpleLogService.logInfo(String.format("Клиенту %s выдан кредит", client.getPassport()));
+        String bk = delegateExecution.getProcessBusinessKey();
+        SimpleLogService.logInfo(bk, String.format("Клиенту %s выдан кредит", client.getPassport()));
     }
 }

@@ -14,6 +14,7 @@ public class DeclineDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
         Client client = (Client) delegateExecution.getVariable("client");
-        SimpleLogService.logWarn(String.format("Клиент %s уведомлен об отказе", client.getPassport()));
+        String bk = delegateExecution.getProcessBusinessKey();
+        SimpleLogService.logWarn(bk, String.format("Клиент %s уведомлен об отказе", client.getPassport()));
     }
 }

@@ -16,6 +16,7 @@ public class CheckClientDelegate implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
+        String bk = delegateExecution.getProcessBusinessKey();
         Client client = (Client) delegateExecution.getVariable("client");
         boolean approveCredit =
                 checkAge(client.getAge()) &
@@ -27,9 +28,9 @@ public class CheckClientDelegate implements JavaDelegate {
                 );
         String message = String.format("Кредит%s одобрен", (approveCredit ? "" : " не" ));
         if (approveCredit) {
-            SimpleLogService.logInfo(message);
+            SimpleLogService.logInfo(bk, message);
         } else {
-            SimpleLogService.logWarn(message);
+            SimpleLogService.logWarn(bk, message);
         }
         delegateExecution.setVariable(Variables.APPROVE_CREDIT.getVariable(), approveCredit ? "TRUE" : "FALSE");
 

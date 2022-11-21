@@ -11,8 +11,9 @@ import org.springframework.stereotype.Component;
 public class DataToCreditHistoryDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
+        String bk = delegateExecution.getProcessBusinessKey();
         Client client = (Client) delegateExecution.getVariable("client");
 
-        SimpleLogService.logWarn(String.format("Данные о клиенте %s внесены в реестр", client.getPassport()));
+        SimpleLogService.logWarn(bk,String.format("Данные о клиенте %s внесены в реестр", client.getPassport()));
     }
 }
